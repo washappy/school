@@ -15,16 +15,18 @@ def get_lunch():
     html = response.text
     
     soup = BeautifulSoup(html, 'html.parser')
-    
+
+    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(2)")
+
     source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(3) > p:nth-child(1)")
     
     text = source.text
     text = text.replace("""[중식]
-    
-    																	""","[중식]\n")
+
+																	""","[중식]\n")
     text = text.replace("*","\n*")
 
-    return text
+    return (day.text+"\n"+text)
 
 def get_dinner():
     url = "https://school.koreacharts.com/school/meals/B000012060/contents.html"
@@ -37,16 +39,18 @@ def get_dinner():
     html = response.text
     
     soup = BeautifulSoup(html, 'html.parser')
+
+    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(2)")
     
     source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(3) > p:nth-child(2)")
     
     text = source.text
     text = text.replace("""[석식]
-    
-    																	""","[석식]\n")
+
+																	""","[석식]\n")
     text = text.replace("*","\n*")
 
-    return text
+    return (day.text+"\n"+text)
 
 @app.route("/")
 def index():
