@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 def get_lunch():
-    url = "https://school.koreacharts.com/school/meals/B000012060/contents.html"
+    url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
 
     headers = {
         "User-Agent": "Mozilla/5.0"
@@ -16,20 +16,18 @@ def get_lunch():
     
     soup = BeautifulSoup(html, 'html.parser')
 
-    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(2)")
+    day = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child(1) > div > strong")
 
-    source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(3) > p:nth-child(1)")
-    
+	source = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child(1) > div > div > ul")
+
+
     text = source.text
-    text = text.replace("""[중식]
-
-																	""","[중식]\n")
-    text = text.replace("*","\n*")
+    text = text.replace(" ","\n*").rstrip("*")
 
     return (day.text+"\n"+text)
 
 def get_dinner():
-    url = "https://school.koreacharts.com/school/meals/B000012060/contents.html"
+    url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
 
     headers = {
         "User-Agent": "Mozilla/5.0"
@@ -40,21 +38,18 @@ def get_dinner():
     
     soup = BeautifulSoup(html, 'html.parser')
 
-    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(2)")
+    day = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child(2) > div > strong")
     
-    source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child(2) > td:nth-child(3) > p:nth-child(2)")
+    source = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child(2) > div > div > ul")
     
     text = source.text
-    text = text.replace("""[석식]
-
-																	""","[석식]\n")
-    text = text.replace("*","\n*")
+    text = text.replace(" ","\n*").rstrip("*")
 
     return (day.text+"\n"+text)
 
 @app.route("/")
 def index():
-    return "챗봇 서버 작동 중!"
+    return "서버 작동 중! :D"
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
