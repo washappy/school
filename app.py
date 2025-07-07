@@ -5,8 +5,10 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 
 def get_lunch():
-    url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
+    #url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
 
+    url = "https://m.search.naver.com/search.naver?query=경기고+급식&sm=mtp_hty.top&where=m"
+    
     headers = {
         "User-Agent": "Mozilla/5.0"
     }
@@ -29,8 +31,10 @@ def get_lunch():
         #return("오늘 중식은 없습니다")
 
 def get_dinner():
-    url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
+    #url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
 
+    url = "https://m.search.naver.com/search.naver?query=경기고+급식&sm=mtp_hty.top&where=m"
+    
     headers = {
         "User-Agent": "Mozilla/5.0"
     }
