@@ -23,10 +23,10 @@ def get_lunch():
 
     text = source.text
     text = text.replace(" ","\n*").rstrip("*")
-    if ("TODAY" in text):
-        return (day.text+"\n"+text)
-    else:
-        return("오늘 중식은 없습니다")
+    #if ("TODAY" in text):
+    return (day.text+"\n"+text)
+    #else:
+        #return("오늘 중식은 없습니다")
 
 def get_dinner():
     url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
@@ -47,10 +47,10 @@ def get_dinner():
     text = source.text
     text = text.replace(" ","\n*").rstrip("*")
     
-    if ("TODAY" in text):
-        return (day.text+"\n"+text)
-    else:
-        return("오늘 석식은 없습니다")
+    #if ("TODAY" in text):
+    return (day.text+"\n"+text)
+    #else:
+        #return("오늘 석식은 없습니다")
 
 @app.route("/")
 def index():
