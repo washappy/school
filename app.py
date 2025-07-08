@@ -77,7 +77,7 @@ def get_lunch():
     text = text.replace("*","\n*")
     
     #if ("TODAY" in text):
-    return (get_today+a+"\n\n"+text)
+    return (get_today()+a+"\n\n"+text)
     #else:
     #return("오늘 중식은 없습니다")
 
