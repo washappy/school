@@ -30,13 +30,23 @@ def get_lunch():
     source = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child({}) > div > div > ul".format(k))
 
 
-    text = source.text
+    """text = source.text
     text = text.replace(" ","\n*").rstrip("*")
     
     #if ("TODAY" in text):
     return (day.text+"\n"+text)
     #else:
-    #return("오늘 중식은 없습니다")
+    #return("오늘 중식은 없습니다")"""
+    found = False
+    t = ""
+    for tag in soup.find_all(True):
+        # tag.get_text()가 아니라 tag 자체의 html로 찾음
+        tag_html = str(tag)
+        if re.search(r"TODAY", tag_html):
+            t+=tag_html+"\n"
+            found = True
+    if not found:
+        return("없음")
 
 def get_dinner():
     url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ac"
