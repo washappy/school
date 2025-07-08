@@ -161,8 +161,7 @@ def get_dinner():
 																	""","[석식]\n")
     text = text.replace("*","\n*")
     
-    #if ("TODAY" in text):
-    return (get_today()+a+"\n"+text)
+    return (get_today()+isToday+"\n"+text)
 
 @app.route("/")
 def index():
