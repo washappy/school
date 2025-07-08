@@ -58,7 +58,7 @@ def get_lunch():
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
             k = i
-	        a = "TODAY"
+		    a = "TODAY"
             break
 
         i+=1
