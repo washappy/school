@@ -19,7 +19,7 @@ def get_lunch():
     soup = BeautifulSoup(html, 'html.parser')
 
     k=1
-    for i in range(1,6):
+    for i in range(1,11):
         if "TODAY" in soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child({}) > div > strong".format(i)).text:
             k = i
             break
@@ -50,8 +50,8 @@ def get_dinner():
     
     soup = BeautifulSoup(html, 'html.parser')
 
-    k=1
-    for i in range(1,6):
+    k=2
+    for i in range(1,11):
         if "TODAY" in soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child({}) > div > strong".format(i)).text:
             k = i + 1
             break
