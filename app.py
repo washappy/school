@@ -58,7 +58,7 @@ def get_lunch():
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
             k = i
-	    a = "TODAY"
+	        a = "TODAY"
             break
 
         i+=1
@@ -114,6 +114,7 @@ def get_dinner():
     
     soup = BeautifulSoup(html, 'html.parser')
 
+	"""
     k=2
     for i in range(1,11):
         if soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child({}) > div > strong".format(i)) is None:
@@ -132,6 +133,38 @@ def get_dinner():
     return (day.text+"\n"+text)
     #else:
         #return("오늘 석식은 없습니다")
+    """
+    today = datetime.date.today()
+    tday = str(today.day)
+
+    k = 0
+    i = 2
+    a = ""
+    while True:
+        if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
+            break
+        if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
+            k = i
+	        a = "TODAY"
+            break
+
+        i+=1
+	
+        
+    if k==0:
+        k = 2
+    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(2)".format(k))
+
+    source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(3) > p:nth-child(2)".format(k))
+    
+    text = source.text
+    text = text.replace("""[석식]
+
+																	""","[석식]\n")
+    text = text.replace("*","\n*")
+    
+    #if ("TODAY" in text):
+    return (get_today()+a+"\n"+text)
 
 @app.route("/")
 def index():
