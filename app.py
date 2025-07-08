@@ -52,12 +52,12 @@ def get_lunch():
 
     k = 0
     i = 2
-    a = ""
+    isToday = ""
     while True:
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
-            k = i,a = "TODAY"
+            k = i,isToday = "TODAY"
             break
 
         i+=1
@@ -76,7 +76,7 @@ def get_lunch():
     text = text.replace("*","\n*")
     
     #if ("TODAY" in text):
-    return (get_today()+a+"\n"+text)
+    return (get_today()+isToday+"\n"+text)
     #else:
     #return("오늘 중식은 없습니다")
 
@@ -102,8 +102,9 @@ def get_dinner():
 
     #url = "https://m.search.naver.com/search.naver?query=경기고+급식&sm=mtp_hty.top&where=m"
 
-    url = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=blBI&pkid=682&os=24929299&qvt=0&query=경기고등학교 급식식단"
-    
+    #url = "https://search.naver.com/search.naver?where=nexearch&sm=tab_etc&mra=blBI&pkid=682&os=24929299&qvt=0&query=경기고등학교 급식식단"
+    url = "https://school.koreacharts.com/school/meals/B000012060/contents.html"
+	
     headers = {
         "User-Agent": "Mozilla/5.0"
     }
@@ -137,12 +138,12 @@ def get_dinner():
 
     k = 0
     i = 2
-    a = ""
+    isToday = ""
     while True:
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
-            k = i,a = "TODAY"
+            k = i,isToday = "TODAY"
             break
 
         i+=1
