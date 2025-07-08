@@ -2,15 +2,15 @@ from flask import Flask, request, jsonify
 import requests
 from bs4 import BeautifulSoup
 import datetime
+import zoneinfo
 
 app = Flask(__name__)
 
 def get_today():
-    today = datetime.date.today()
-    
-    month = today.month
-    day = today.day
-    weekday = today.weekday()
+    now_kst = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Seoul"))
+    month = now_kst.month
+    day = now_kst.day
+    weekday = now_kst.weekday()
 
     weekdays = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
     weekday_str = weekdays[weekday]
@@ -52,19 +52,19 @@ def get_lunch():
 
     k = 0
     i = 2
+    a = ""
     while True:
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
             k = i
+	    a = "TODAY"
             break
 
         i+=1
+	
         
-    a = ""
-    if k != 0:
-        a = "TODAY"
-    else:
+    if k==0:
         k = 2
     day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(2)".format(k))
 
@@ -77,7 +77,7 @@ def get_lunch():
     text = text.replace("*","\n*")
     
     #if ("TODAY" in text):
-    return (get_today()+a+"\n\n"+text)
+    return (get_today()+a+"\n"+text)
     #else:
     #return("오늘 중식은 없습니다")
 
