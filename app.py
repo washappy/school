@@ -43,9 +43,13 @@ def get_lunch():
     for tag in soup.find_all(True):
         # tag.get_text()가 아니라 tag 자체의 html로 찾음
         tag_html = str(tag)
+        t+=tag_html
+        """
         if re.search(r"TODAY", tag_html):
             t+=tag_html+"\n"
             found = True
+            """
+    return t
     if not found:
         return("없음")
 
