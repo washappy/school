@@ -55,7 +55,7 @@ def get_lunch():
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
-            k = i,isToday = "TODAY"
+            k = i+1,isToday = "TODAY"
             break
 
         i+=1
@@ -140,7 +140,7 @@ def get_dinner():
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
             break
         if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)):
-            k = i,isToday = "TODAY"
+            k = i+1,isToday = "TODAY"
             break
 
         i+=1
