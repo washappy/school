@@ -63,7 +63,7 @@ def get_lunch():
         
     if k==0:
         k = 2
-    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(2)".format(k))
+    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(k))
 
     source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(3) > p:nth-child(1)".format(k))
     
