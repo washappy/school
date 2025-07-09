@@ -133,8 +133,9 @@ def get_dinner():
     #else:
         #return("오늘 석식은 없습니다")
     """
-    today = datetime.date.today()
-    tday = str(today.day)
+    now_kst = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Seoul"))
+    
+    tday = str(now_kst.day)
 
     k = 0
     i = 2
