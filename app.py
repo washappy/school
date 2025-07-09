@@ -55,7 +55,8 @@ def get_lunch():
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
             break
         if str(tday) == str(soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)).text):
-            k = i,isToday = "TODAY"
+            k = i
+            isToday = "TODAY"
             break
 
         i+=1
@@ -63,7 +64,7 @@ def get_lunch():
         
     if k==0:
         k = 2
-    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(k))
+    day = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(2)".format(k))
 
     source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(3) > p:nth-child(1)".format(k))
     
@@ -139,9 +140,10 @@ def get_dinner():
     isToday = ""
     while True:
         if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
-            continue
-        if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)).text:
-            k = i,isToday = "TODAY"
+            break
+        if str(tday) == str(soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)).text):
+            k = i
+            isToday = "TODAY"
             break
 
         i+=1
