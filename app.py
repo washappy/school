@@ -46,9 +46,9 @@ def get_lunch():
 
     source = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child({}) > div > div > ul".format(k))
     """
-
-    today = datetime.date.today()
-    tday = str(today.day)
+	now_kst = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Seoul"))
+    
+    tday = str(now_kst.day)
 
     k = 0
     i = 2
