@@ -76,7 +76,7 @@ def get_lunch():
     text = text.replace("*","\n*")
     
     #if ("TODAY" in text):
-    return (today+isToday+"\n"+text)
+    return (today+" "+isToday+"\n"+text)
     #else:
     #return("오늘 중식은 없습니다")
 
@@ -161,7 +161,7 @@ def get_dinner():
 																	""","[석식]\n")
     text = text.replace("*","\n*")
     
-    return (today+isToday+"\n"+text)
+    return (today+" "+isToday+"\n"+text)
 
 @app.route("/")
 def index():
