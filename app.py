@@ -67,6 +67,7 @@ def get_lunch():
 
     source = soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(3) > p:nth-child(1)".format(k))
     
+    return day.text
     text = source.text
     text = text.replace("""[중식]
 
