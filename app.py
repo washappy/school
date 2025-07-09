@@ -52,9 +52,9 @@ def get_lunch():
     i = 2
     isToday = ""
     while True:
-        if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)) is None:
-            continue
-        if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(1)".format(i)).text:
+        if soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(0)".format(i)) is None:
+            break
+        if tday == soup.select_one("body > div > div > div > section.content > div:nth-child(6) > div > div > div.box-body > table > tbody > tr:nth-child({}) > td:nth-child(0)".format(i)).text:
             k = i,isToday = "TODAY"
             break
 
