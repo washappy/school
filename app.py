@@ -17,7 +17,7 @@ def get_today():
 
     result = f"{month}월 {day}일 {weekday_str}"
     
-    return result
+    return day,result
 
 def get_lunch():
     #url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EA%B2%BD%EA%B8%B0%EA%B3%A0+%EA%B8%89%EC%8B%9D&ackey=vwcnif47"
@@ -46,9 +46,7 @@ def get_lunch():
 
     source = soup.select_one("#main_pack > div.sc_new.cs_common_module.case_normal.color_5._school.cs_kindergarten._edu_list > div.cm_content_wrap > div > div.timeline_list.open > ul > li:nth-child({}) > div > div > ul".format(k))
     """
-    now_kst = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Seoul"))
-    
-    tday = str(now_kst.day)
+    tday,today = get_today()
 
     k = 0
     i = 2
@@ -76,7 +74,7 @@ def get_lunch():
     text = text.replace("*","\n*")
     
     #if ("TODAY" in text):
-    return (get_today()+isToday+"\n"+text)
+    return (today+isToday+"\n"+text)
     #else:
     #return("오늘 중식은 없습니다")
 
@@ -133,9 +131,7 @@ def get_dinner():
     #else:
         #return("오늘 석식은 없습니다")
     """
-    now_kst = datetime.datetime.now(zoneinfo.ZoneInfo("Asia/Seoul"))
-    
-    tday = str(now_kst.day)
+    tday, today = get_today()
 
     k = 0
     i = 2
@@ -162,7 +158,7 @@ def get_dinner():
 																	""","[석식]\n")
     text = text.replace("*","\n*")
     
-    return (get_today()+isToday+"\n"+text)
+    return (today+isToday+"\n"+text)
 
 @app.route("/")
 def index():
